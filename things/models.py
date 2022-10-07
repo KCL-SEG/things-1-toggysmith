@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Model
-from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Thing(Model):
@@ -16,8 +16,9 @@ class Thing(Model):
         , max_length = 120
     )
 
-    quantity = models.PositiveIntegerField(
+    quantity = models.IntegerField(
         validators = [
+            MinValueValidator(0),
             MaxValueValidator(100)
         ]
     )
